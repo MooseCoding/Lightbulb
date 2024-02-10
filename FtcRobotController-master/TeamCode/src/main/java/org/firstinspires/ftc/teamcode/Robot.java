@@ -1,13 +1,13 @@
 package org.firstinspires.ftc.teamcode;
-
+import com.jedisonknights.lightbulb.SubsystemClass;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import org.firstinspires.ftc.teamcode.subsystems.intialSubsystem;
 
 @TeleOp
-public class intialRobotChassis extends LinearOpMode {
-
+public class Robot extends LinearOpMode {
     private DcMotor br;
     private DcMotor fr;
     private DcMotor bl;
@@ -15,6 +15,8 @@ public class intialRobotChassis extends LinearOpMode {
 
     private double mult = 1;
     private double turnMult = 0.8;
+
+    private SubsystemClass c = new intialSubsystem(10, 5);
     /**
      * This function is executed when this Op Mode is selected from the Driver Station.
      */
@@ -27,7 +29,7 @@ public class intialRobotChassis extends LinearOpMode {
         fl = hardwareMap.get(DcMotor.class, "fl");
 
         waitForStart();
-        while (opModeIsActive()) {
+        while (opModeIsActive() && !isStopRequested()) {
             // Put run blocks here.
             br.setDirection(DcMotorSimple.Direction.REVERSE);
             bl.setDirection(DcMotorSimple.Direction.FORWARD);
