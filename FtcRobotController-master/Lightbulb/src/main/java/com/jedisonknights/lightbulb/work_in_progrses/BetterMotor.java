@@ -1,5 +1,6 @@
-package com.jedisonknights.lightbulb;
+package com.jedisonknights.lightbulb.work_in_progrses;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class BetterMotor implements HardwareDevice {
     public DcMotor motor;
@@ -10,7 +11,7 @@ public class BetterMotor implements HardwareDevice {
 
     public double ENCODER_TARGET;
 
-    private Runmode current_runmode;
+    private RUNMODE current_runmode;
 
     @Override
     public void disable() {
@@ -21,7 +22,7 @@ public class BetterMotor implements HardwareDevice {
     public String getDeviceType() {
         return "Motor " + motor_type;
     }
-    enum Runmode {
+    enum RUNMODE {
         PIDF_LIMIT,
         PIDF,
         Encoder,
@@ -159,7 +160,7 @@ public class BetterMotor implements HardwareDevice {
 
     }
 
-    public void setCurrent_runmode(Runmode runmode) {
-        this.better_runmode = runmode;
+    public void setCurrent_runmode(RUNMODE runmode) {
+        this.current_runmode = runmode;
     }
 }

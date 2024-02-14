@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode;
-import com.jedisonknights.lightbulb.SubsystemClass;
+
+import com.arcrobotics.ftclib.hardware.motors.Motor;
+import com.arcrobotics.ftclib.hardware.motors.Motor.Encoder;
+import com.jedisonknights.lightbulb.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import org.firstinspires.ftc.teamcode.subsystems.intialSubsystem;
+import com.jedisonknights.lightbulb.Position;
 
 @TeleOp
 public class Robot extends LinearOpMode {
@@ -12,14 +15,13 @@ public class Robot extends LinearOpMode {
     private DcMotor fr;
     private DcMotor bl;
     private DcMotor fl;
+    private Motor Odometry_1;
+    private Motor Odometry_2;
+    private Motor Odometry_3;
 
     private double mult = 1;
     private double turnMult = 0.8;
 
-    private SubsystemClass c = new intialSubsystem(10, 5);
-    /**
-     * This function is executed when this Op Mode is selected from the Driver Station.
-     */
     @Override
     public void runOpMode() {
 
@@ -27,6 +29,11 @@ public class Robot extends LinearOpMode {
         fr = hardwareMap.get(DcMotor.class, "fr");
         bl = hardwareMap.get(DcMotor.class, "bl");
         fl = hardwareMap.get(DcMotor.class, "fl");
+        Odometry_1 = new Motor(hardwareMap, "odometry_1");
+        Odometry_2 = new Motor(hardwareMap, "odometry_2");
+        Odometry_3 = new Motor(hardwareMap, "odometry_3");
+
+        Position pos = new Position(new Vector2d(0,0,0),1,1,Odometry_1.encoder, Odometry_2.encoder, Odometry_3.encoder);
 
         waitForStart();
         while (opModeIsActive() && !isStopRequested()) {

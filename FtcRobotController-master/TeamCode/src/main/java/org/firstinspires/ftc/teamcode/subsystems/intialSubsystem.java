@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.jedisonknights.lightbulb.SubsystemClass;
+import com.jedisonknights.lightbulb.subsystems.SubsystemClass;
 
 public class intialSubsystem extends SubsystemClass {
     private DcMotorEx motor = hardwareMap.get(DcMotorEx.class, "motor");
