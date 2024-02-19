@@ -1,4 +1,4 @@
-package com.jedisonknights.lightbulb.work_in_progrses;
+package com.jedisonknights.lightbulb.drivetrains;
 public interface HardwareDevice {
     void disable();
     String getDeviceType();
