@@ -1,2 +1,2 @@
 # Lightbulb
-FTC Library providing better motors, sensors, telemetry, and more. 
+FTC Library for differential and coaxial swerve drivetrains
