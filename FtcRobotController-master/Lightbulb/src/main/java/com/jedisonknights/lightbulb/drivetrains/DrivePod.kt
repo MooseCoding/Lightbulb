@@ -2,13 +2,14 @@ package com.jedisonknights.lightbulb.drivetrains
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.jedisonknights.lightbulb.DifferentialServo
+import com.qualcomm.robotcore.hardware.AnalogInput
 import kotlin.math.PI
 import kotlin.math.atan
 
 open class DrivePod(drive_motor : DcMotor, servo_pod : DifferentialServo, servo_encoder : AnalogInput){
   private val drive_motor = drive_motor
   private val servo_pod = servo_pod
-  private val servo_encoder : DifferentialServo = servo_encoder
+  private val servo_encoder : DifferentialServo = DifferentialServo(servo_encoder)
   private val degree_pos_motor : Double = 0.0 //find position required to turn motor 1 degree clockwise 
   private val servo_pos_motor : Double = 0.0 
   
@@ -60,12 +61,16 @@ open class DrivePod(drive_motor : DcMotor, servo_pod : DifferentialServo, servo_
   }
 
   fun strafe_right(power : Double) {
-    goToAngle(90)
+    goToAngle(90.0)
     drive_forward(power)
   }
 
   fun strafe_left(power : Double) {
-    goToAngle(90)
+    goToAngle(90.0)
     drive_forward(-power)
+  }
+
+  fun run(power : Double) {
+
   }
 }

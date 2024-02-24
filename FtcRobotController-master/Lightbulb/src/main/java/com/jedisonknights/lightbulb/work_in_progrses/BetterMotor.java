@@ -7,12 +7,17 @@ public class BetterMotor implements HardwareDevice {
     public MOTOR_TYPE motor_type;
     public double MAX_TPS;
 
+    public boolean get_activity = false;
+
     public BetterEncoder encoder;
 
-    public double ENCODER_TARGET;
+    public int ENCODER_TARGET;
 
-    private RUNMODE current_runmode;
+    private Motor_Controller controller;
 
+    private RUNMODE current_runmode = RUNMODE.Power;
+
+    private double last_time_talked;
     @Override
     public void disable() {
         motor.close();
@@ -21,12 +26,6 @@ public class BetterMotor implements HardwareDevice {
     @Override
     public String getDeviceType() {
         return "Motor " + motor_type;
-    }
-    enum RUNMODE {
-        PIDF_LIMIT,
-        PIDF,
-        Encoder,
-        Power
     }
 
     public enum MOTOR_TYPE { //credit to FTCLibs for the GoBilda data, REV data is still being tested :)
@@ -62,7 +61,7 @@ public class BetterMotor implements HardwareDevice {
         if (use_encoder) {
             this.encoder = new BetterEncoder();
         }
-        this.current_runmode = Runmode.Power;
+        this.current_runmode = RUNMODE.Power;
     }
 
     public class BetterEncoder {
@@ -143,13 +142,8 @@ public class BetterMotor implements HardwareDevice {
     }
 
     public void run(double power) {
-        switch (current_runmode) {
-            case Power:
-                motor.setPower(power);
-                break;
-            case Encoder:
-                positionContoller.
-        }
+        controller.run(power);
+        get_time();
     }
 
     public void setEncoder(int target) {
@@ -160,7 +154,18 @@ public class BetterMotor implements HardwareDevice {
 
     }
 
+    public void get_time() {
+        last_time_talked = System.nanoTime() / 1000000000.0;
+    }
+
     public void setCurrent_runmode(RUNMODE runmode) {
         this.current_runmode = runmode;
     }
+
+
+    public RUNMODE getCurrent_runmode() {
+        get_time();
+        return current_runmode;
+    }
+
 }
