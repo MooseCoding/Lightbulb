@@ -26,7 +26,4 @@ open class Servo_Controller(servo : Servo) : HardwareDevice {
         }
     }
 
-    fun power() : Double {
-        return servo.
-    }
 }
