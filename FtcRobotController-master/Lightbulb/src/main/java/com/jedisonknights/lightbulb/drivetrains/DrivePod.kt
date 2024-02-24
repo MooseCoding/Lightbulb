@@ -50,6 +50,9 @@ open class DrivePod(drive_motor : DcMotor, servo_pod : DifferentialServo, servo_
     }
   }
 
+  fun run(power : Double) {
+    drive_motor.run(power)
+
   fun drive_forward(power : Double) {
     drive_motor.setPower(power)
     servo_pod.setPower(-power)
