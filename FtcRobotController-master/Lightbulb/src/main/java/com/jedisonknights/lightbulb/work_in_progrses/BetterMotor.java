@@ -18,7 +18,7 @@ public class BetterMotor implements HardwareDevice {
 
     private RUNMODE current_runmode = RUNMODE.Power;
 
-    private double last_time_talked;
+    public double last_time_talked;
     @Override
     public void disable() {
         motor.close();
@@ -148,15 +148,15 @@ public class BetterMotor implements HardwareDevice {
     }
 
     public void setEncoder(int target) {
-        ENCODER_TARGET = target * encoder.distance_per_pulse;
+        ENCODER_TARGET = (int)(target * encoder.distance_per_pulse);
     }
 
     public void setPIDFLimits(double MIN_POS, double MAX_POS, double AMPS) {
 
     }
 
-    public void get_time() {
-        last_time_talked = System.nanoTime() / 1000000000.0;
+    public Double get_time() {
+        return System.nanoTime() / 1000000000.0;
     }
 
     public void setCurrent_runmode(RUNMODE runmode) {

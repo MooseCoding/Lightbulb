@@ -17,7 +17,6 @@ open class Servo_Controller(servo : Servo) : HardwareDevice {
         isServoActive = true
         while (isServoActive) {
             Thread {
-
                 servo.position = servo.position + 360
                 if (!isServoActive) {
                     return@Thread
