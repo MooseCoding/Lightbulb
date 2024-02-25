@@ -1,6 +1,6 @@
 package com.jedisonknights.lightbulb
 
-open class                    Vector2d(x : Double, y : Double, theta : Double) {
+open class Vector2d(x : Double, y : Double, theta : Double) {
   var x_pos = x
   var y_pos = y
   var angle = theta
